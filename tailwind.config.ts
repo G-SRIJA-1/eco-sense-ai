@@ -28,6 +28,35 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
+        eco: {
+          green: {
+            100: '#E8F5E9',
+            200: '#C8E6C9',
+            300: '#A5D6A7',
+            400: '#81C784',
+            500: '#4CAF50',
+            600: '#2E7D32',
+            700: '#1B5E20',
+          },
+          blue: {
+            100: '#E3F2FD',
+            200: '#BBDEFB',
+            300: '#90CAF9',
+            400: '#42A5F5',
+            500: '#1E88E5', 
+            600: '#1565C0',
+            700: '#0D47A1',
+          },
+          earth: {
+            100: '#EFEBE9',
+            200: '#D7CCC8',
+            300: '#BCAAA4',
+            400: '#A1887F',
+            500: '#795548',
+            600: '#5D4037',
+            700: '#3E2723',
+          },
+        },
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
