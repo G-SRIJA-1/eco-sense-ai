@@ -1,8 +1,9 @@
 
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import {
   BarChart3,
   Bell,
@@ -70,6 +71,53 @@ const bottomNavItems = [
 export function Sidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleNavigation = (path: string) => {
+    if (path === location.pathname) return;
+    
+    // Check if the page is implemented yet
+    const implementedRoutes = ["/dashboard"];
+    
+    if (implementedRoutes.includes(path) || path === "/login") {
+      navigate(path);
+    } else {
+      // For unimplemented routes, show a toast with a recommendation
+      let recommendation = "";
+      
+      if (path === "/dashboard/alerts") {
+        recommendation = "Consider setting up custom alert thresholds based on local environmental standards.";
+      } else if (path === "/dashboard/air-quality") {
+        recommendation = "Monitor AQI levels and track particulate matter trends to identify pollution sources.";
+      } else if (path === "/dashboard/temperature") {
+        recommendation = "Compare temperature data with historical averages to identify climate change patterns.";
+      } else if (path === "/dashboard/map") {
+        recommendation = "Analyze geographical distribution of environmental factors to identify problem areas.";
+      } else if (path === "/dashboard/predictions") {
+        recommendation = "Use AI models to forecast air quality changes based on weather patterns and pollution sources.";
+      } else if (path === "/dashboard/statistics") {
+        recommendation = "Compare your local data with regional and global standards for better context.";
+      }
+      
+      toast({
+        title: "Page coming soon!",
+        description: recommendation || "This feature is under development. Check back soon!",
+        duration: 5000,
+      });
+      
+      // Navigate to dashboard for now
+      navigate("/dashboard");
+    }
+  };
+
+  const handleLogout = () => {
+    toast({
+      title: "Logged out",
+      description: "You have been logged out successfully.",
+    });
+    navigate("/login");
+  };
 
   return (
     <div
@@ -120,11 +168,11 @@ export function Sidebar() {
       <div className="flex-1 py-4 overflow-y-auto">
         <nav className="px-2 space-y-1">
           {navItems.map((item) => (
-            <Link
+            <button
               key={item.href}
-              to={item.href}
+              onClick={() => handleNavigation(item.href)}
               className={cn(
-                "flex items-center px-2 py-2 text-sm font-medium rounded-md transition-all",
+                "w-full flex items-center px-2 py-2 text-sm font-medium rounded-md transition-all",
                 location.pathname === item.href
                   ? "bg-eco-green-100 text-eco-green-600 dark:bg-gray-800 dark:text-eco-green-400"
                   : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
@@ -139,7 +187,7 @@ export function Sidebar() {
                 )}
               />
               {!isCollapsed && <span className="ml-3">{item.title}</span>}
-            </Link>
+            </button>
           ))}
         </nav>
       </div>
@@ -148,11 +196,11 @@ export function Sidebar() {
       <div className="p-4 border-t border-gray-200 dark:border-gray-800">
         <div className="space-y-1">
           {bottomNavItems.map((item) => (
-            <Link
+            <button
               key={item.href}
-              to={item.href}
+              onClick={() => handleNavigation(item.href)}
               className={cn(
-                "flex items-center px-2 py-2 text-sm font-medium rounded-md transition-all",
+                "w-full flex items-center px-2 py-2 text-sm font-medium rounded-md transition-all",
                 location.pathname === item.href
                   ? "bg-eco-green-100 text-eco-green-600 dark:bg-gray-800 dark:text-eco-green-400"
                   : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
@@ -167,7 +215,7 @@ export function Sidebar() {
                 )}
               />
               {!isCollapsed && <span className="ml-3">{item.title}</span>}
-            </Link>
+            </button>
           ))}
           
           {/* Logout button */}
@@ -176,10 +224,7 @@ export function Sidebar() {
             className={cn(
               "w-full flex items-center justify-start px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
             )}
-            onClick={() => {
-              // Handle logout here
-              window.location.href = "/login";
-            }}
+            onClick={handleLogout}
           >
             <LogOut className="h-5 w-5 text-gray-400 dark:text-gray-500" />
             {!isCollapsed && <span className="ml-3">Logout</span>}
