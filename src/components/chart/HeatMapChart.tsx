@@ -71,65 +71,69 @@ export function HeatMapChart({
         </div>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col items-center">
-          <div 
-            className="relative" 
-            style={{ width: `${width}px`, height: `${height + 40}px` }}
-          >
-            {/* X-axis labels */}
-            <div className="flex absolute top-0 left-10" style={{ width: `${width}px` }}>
-              {xLabels.map((label, i) => (
-                <div
-                  key={`x-label-${i}`}
-                  className="text-xs text-center text-muted-foreground"
-                  style={{ width: `${cellWidth}px` }}
-                >
-                  {label}
+        <div className="heatmap-container">
+          <div className="heatmap-wrapper">
+            <div className="flex flex-col items-center">
+              <div 
+                className="relative" 
+                style={{ width: `${width}px`, height: `${height + 40}px` }}
+              >
+                {/* X-axis labels */}
+                <div className="flex absolute top-0 left-10" style={{ width: `${width}px` }}>
+                  {xLabels.map((label, i) => (
+                    <div
+                      key={`x-label-${i}`}
+                      className="text-xs text-center text-muted-foreground"
+                      style={{ width: `${cellWidth}px` }}
+                    >
+                      {label}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            
-            {/* Heatmap cells */}
-            <div className="absolute top-10 left-10" style={{ width: `${width}px`, height: `${height}px` }}>
-              {data.map((d, i) => (
-                <div
-                  key={`cell-${i}`}
-                  className="absolute border border-background"
-                  style={{
-                    width: `${cellWidth}px`,
-                    height: `${cellHeight}px`,
-                    left: `${d.x * cellWidth}px`,
-                    top: `${d.y * cellHeight}px`,
-                    backgroundColor: getColor(d.value),
-                    opacity: 0.8,
-                  }}
-                  title={`Value: ${d.value}`}
-                />
-              ))}
-            </div>
-            
-            {/* Y-axis labels */}
-            <div className="absolute top-10 left-0" style={{ height: `${height}px` }}>
-              {yLabels.map((label, i) => (
-                <div
-                  key={`y-label-${i}`}
-                  className="text-xs text-right text-muted-foreground"
-                  style={{ 
-                    height: `${cellHeight}px`, 
-                    marginTop: i === 0 ? 0 : `${cellHeight - 16}px` 
-                  }}
-                >
-                  {label}
+                
+                {/* Heatmap cells */}
+                <div className="absolute top-10 left-10" style={{ width: `${width}px`, height: `${height}px` }}>
+                  {data.map((d, i) => (
+                    <div
+                      key={`cell-${i}`}
+                      className="absolute border border-background"
+                      style={{
+                        width: `${cellWidth}px`,
+                        height: `${cellHeight}px`,
+                        left: `${d.x * cellWidth}px`,
+                        top: `${d.y * cellHeight}px`,
+                        backgroundColor: getColor(d.value),
+                        opacity: 0.8,
+                      }}
+                      title={`Value: ${d.value}`}
+                    />
+                  ))}
                 </div>
-              ))}
+                
+                {/* Y-axis labels */}
+                <div className="absolute top-10 left-0" style={{ height: `${height}px` }}>
+                  {yLabels.map((label, i) => (
+                    <div
+                      key={`y-label-${i}`}
+                      className="text-xs text-right text-muted-foreground"
+                      style={{ 
+                        height: `${cellHeight}px`, 
+                        marginTop: i === 0 ? 0 : `${cellHeight - 16}px` 
+                      }}
+                    >
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Legend */}
+              <div className="flex items-center mt-6 space-x-2">
+                <div className="text-xs text-muted-foreground">Low</div>
+                <div className="h-2 w-32 bg-gradient-to-r from-green-500 to-red-500 rounded-sm"></div>
+                <div className="text-xs text-muted-foreground">High</div>
+              </div>
             </div>
-          </div>
-          
-          {/* Legend */}
-          <div className="flex items-center mt-6 space-x-2">
-            <div className="text-xs text-muted-foreground">Low</div>
-            <div className="h-2 w-32 bg-gradient-to-r from-green-500 to-red-500 rounded-sm"></div>
-            <div className="text-xs text-muted-foreground">High</div>
           </div>
         </div>
       </CardContent>

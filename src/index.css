@@ -82,6 +82,99 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Eco Green Theme */
+  .theme-eco-green {
+    --background: 120 15% 98%;
+    --foreground: 120 50% 10%;
+
+    --card: 120 20% 97%;
+    --card-foreground: 120 50% 10%;
+
+    --popover: 120 20% 97%;
+    --popover-foreground: 120 50% 10%;
+
+    --primary: 120 61% 33.9%;
+    --primary-foreground: 120 3% 95%;
+
+    --secondary: 120 20% 90%;
+    --secondary-foreground: 120 50% 15%;
+
+    --muted: 120 15% 93%;
+    --muted-foreground: 120 25% 40%;
+
+    --accent: 120 20% 90%;
+    --accent-foreground: 120 50% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 120 20% 85%;
+    --input: 120 20% 85%;
+    --ring: 120 50% 30%;
+  }
+
+  /* Eco Blue Theme */
+  .theme-eco-blue {
+    --background: 210 50% 98%;
+    --foreground: 210 80% 10%;
+
+    --card: 210 40% 97%;
+    --card-foreground: 210 80% 10%;
+
+    --popover: 210 40% 97%;
+    --popover-foreground: 210 80% 10%;
+
+    --primary: 210 70% 40%;
+    --primary-foreground: 210 5% 95%;
+
+    --secondary: 210 30% 90%;
+    --secondary-foreground: 210 50% 15%;
+
+    --muted: 210 20% 93%;
+    --muted-foreground: 210 30% 40%;
+
+    --accent: 210 30% 90%;
+    --accent-foreground: 210 50% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 30% 85%;
+    --input: 210 30% 85%;
+    --ring: 210 70% 40%;
+  }
+
+  /* Eco Earth Theme */
+  .theme-eco-earth {
+    --background: 30 20% 98%;
+    --foreground: 30 80% 10%;
+
+    --card: 30 15% 97%;
+    --card-foreground: 30 80% 10%;
+
+    --popover: 30 15% 97%;
+    --popover-foreground: 30 80% 10%;
+
+    --primary: 30 60% 35%;
+    --primary-foreground: 30 5% 95%;
+
+    --secondary: 30 20% 90%;
+    --secondary-foreground: 30 50% 15%;
+
+    --muted: 30 10% 93%;
+    --muted-foreground: 30 25% 40%;
+
+    --accent: 30 20% 90%;
+    --accent-foreground: 30 50% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 30 20% 85%;
+    --input: 30 20% 85%;
+    --ring: 30 60% 35%;
+  }
 }
 
 @layer base {
@@ -101,4 +194,16 @@
   50% {
     transform: translateY(-20px);
   }
+}
+
+/* Fix for Heatmap alignment */
+.heatmap-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.heatmap-wrapper {
+  margin: 0 auto;
+  min-width: 800px;
 }

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { useProfile } from "@/contexts/ProfileContext";
 
 type AuthFormProps = {
   mode: "login" | "signup";
@@ -17,12 +18,27 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { setProfile } = useProfile();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In a real app, we would verify credentials or create a new account
-    // For now, we'll simulate a successful login/signup
+    // Create a user profile
+    const userProfile = {
+      id: `user-${Date.now()}`,
+      name: name || email.split('@')[0],
+      email,
+      location: "Chittoor, Andhra Pradesh",
+      preferences: {
+        theme: "light",
+        notifications: true,
+        voiceAssistant: true
+      }
+    };
+    
+    // Set the profile in context
+    setProfile(userProfile);
+    
     toast({
       title: mode === "login" ? "Login Successful" : "Account Created",
       description: mode === "login" 
