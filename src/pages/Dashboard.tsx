@@ -7,6 +7,7 @@ import { PredictionCard } from "@/components/dashboard/PredictionCard";
 import { AlertsCard } from "@/components/dashboard/AlertsCard";
 import { RecommendationsCard } from "@/components/dashboard/RecommendationsCard";
 import { HeatMapChart } from "@/components/chart/HeatMapChart";
+import { VoiceAssistant } from "@/components/dashboard/VoiceAssistant";
 import { 
   airQualityData, 
   weatherData, 
@@ -22,7 +23,14 @@ export default function Dashboard() {
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       <Sidebar />
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto relative">
+        {/* Voice Assistant */}
+        <VoiceAssistant data={{
+          temperature: weatherData.temperature,
+          condition: weatherData.condition,
+          location: location
+        }} />
+        
         <div className="container mx-auto py-6 px-4">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
             <div>

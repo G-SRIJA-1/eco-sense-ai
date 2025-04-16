@@ -106,8 +106,8 @@ export function Sidebar() {
         duration: 5000,
       });
       
-      // Navigate to dashboard for now
-      navigate("/dashboard");
+      // Create route component for the path to handle navigation
+      navigate(path);
     }
   };
 
