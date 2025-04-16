@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { LineChart } from "@/components/chart/LineChart";
 
 export default function Statistics() {
-  // Sample data for demonstration
+  // Sample data for demonstration with all required properties
   const chartData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets: [
@@ -11,11 +11,19 @@ export default function Statistics() {
         label: "Temperature (°C)",
         data: [22, 24, 27, 30, 33, 35, 36, 35, 32, 29, 26, 23],
         borderColor: "rgb(75, 192, 192)",
+        backgroundColor: "rgba(75, 192, 192, 0.1)",
+        pointBackgroundColor: "rgb(75, 192, 192)",
+        pointBorderColor: "#fff",
+        tension: 0.4
       },
       {
         label: "PM2.5 (μg/m³)",
         data: [15, 18, 20, 25, 30, 28, 22, 19, 21, 23, 19, 16],
         borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.1)",
+        pointBackgroundColor: "rgb(255, 99, 132)",
+        pointBorderColor: "#fff",
+        tension: 0.4
       }
     ]
   };
@@ -37,11 +45,9 @@ export default function Statistics() {
           <div className="grid gap-6">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
               <h2 className="text-xl font-semibold mb-4">Year-to-Date Trends</h2>
-              <LineChart 
-                title="Annual Environmental Metrics" 
-                data={chartData} 
-                height={300}
-              />
+              <div style={{ height: "300px" }}>
+                <LineChart data={chartData} />
+              </div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
